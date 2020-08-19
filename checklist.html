@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+</head>
+<body>
+
+<style>
+
+
+  form {
+    display: inline-block;
+}
+.form-group {
+    text-align: center;
+    padding-bottom: 25px;
+}
+#todo {
+    margin: 0 auto;
+    width: 500px;
+}
+
+a.close {
+  float: right;
+}
+
+
+
+/* my css */
+
+li{
+
+cursor:pointer;
+background: #81f071;
+padding: 20px;
+border-radius: 10px;
+margin-bottom: 10px;
+
+}
+
+#list{
+  padding: 0px;
+}
+
+
+
+.list-item{
+margin-bottom: 30px;  
+background-color: #ec6f6f;
+padding: 20px;
+border-radius: 10px;
+cursor: pointer;
+}
+
+.cut{
+  text-decoration: line-through;
+  background: rgb(231, 106, 106);
+}
+
+h6{
+  text-align: center;
+  margin-top: 37px;
+}
+
+.hide{
+display: none;
+}
+
+
+</style>
+
+<!--main script-->
+<script>
+
+  $(document).ready(function () {
+
+/*add task on to-do */
+
+    $("button").click(function () {
+	
+	if ($('.form-control').val().length == 0){
+	
+		  $("#alrt").removeClass("hide");
+		  
+		}
+		
+		else {
+		  $("#alrt").addClass("hide");
+		
+      var items = $(".form-control").val();
+	  
+	
+
+      $("#todo").append("<li>" + items + " <a href='#' class='close' aria-hidden='true'>&times;</a></li>");
+	 } 
+	
+	  
+/*automatic clear input field */	  
+	  $('.form-control').val('');
+	 
+    });
+	
+ /* Mark completed task */  
+  
+
+    $("ul").on("click", "li", function () {
+      $(this).toggleClass("cut");
+    });
+
+	
+  /*Remove completed task */ 
+
+    $("body").on('click', '#todo a', function () {
+      $(this).closest("li").remove();
+    });
+	
+
+  });
+
+
+
+</script>
+
+
+
+
+
+<div class="form-group">
+
+<!-- name of checklist -->
+
+  <h1>Simple To-Do List</h1>
+
+
+  <form role="form" id="myform">
+    <!-- Input Task  -->
+    <input type="text" class="form-control" placeholder="Your Task" name="task">
+  </form>
+  <button type="button" style="margin-top: -5px;" class="btn btn btn-primary">Add</button>
+</div>
+ <p id="alrt" class="hide" style="color:red; text-align:center;">oops!! you can't add blank task :(</p>
+<!--  Task List -->
+<ul class="list-unstyled" id="todo">  
+<li>Demo Task <a href="#" class="close" aria-hidden="true">×</a></li>
+<li>Demo Task 2 <a href="#" class="close" aria-hidden="true">×</a></li>
+<li>Demo Task 3 <a href="#" class="close" aria-hidden="true">×</a></li>
+
+</ul>
+
+
+<h6>This app is made by <a target="_blank" href="https://www.facebook.com/aaashikbd/">Ashik</a> </h6>
+
+
+
+</body>
+</html>
